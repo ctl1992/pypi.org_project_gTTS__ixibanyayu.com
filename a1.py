@@ -34,6 +34,8 @@
 #     # Write the response to the output file.
 #     out.write(response.audio_content)
 #     print('Audio content written to file "output.mp3"')
+from time import sleep
+
 import pandas as pandas
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -64,7 +66,7 @@ with open('a1.mp3', 'wb') as f:
             index = index+1
             # index_english = num2words(index, lang='en')
             index_spainish = num2words(index, lang='es')
-            chinese = tds[2].text
+            chinese = tds[2].text.replace("[拉美]", "").replace("[墨西哥]", "")
             pattern = re.compile(r'[^\u4e00-\u9fa5]')
             chineseOnly = re.sub(pattern, '', chinese)
             spainish = tds[1].find_elements_by_tag_name("span")[0].text
@@ -75,8 +77,12 @@ with open('a1.mp3', 'wb') as f:
                                   'spainish':spainish},
                                  ignore_index=True)
             gTTS(str(index) + "...", lang="zh-TW").write_to_fp(f)  # a1mp3 1
+            sleep(2)
             gTTS(str(index) + "...", lang="es").write_to_fp(f)
+            sleep(2)
             gTTS(chineseOnly + "...", lang="zh-TW").write_to_fp(f)  # 中文
+            sleep(2)
             gTTS(spainish+"...", lang="es").write_to_fp(f)  # 西班牙文
+            sleep(2)
     a1csv.to_excel("a1.xls", index=False)
 pass

@@ -34,6 +34,8 @@
 #     # Write the response to the output file.
 #     out.write(response.audio_content)
 #     print('Audio content written to file "output.mp3"')
+from time import sleep
+
 import pandas as pandas
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -58,25 +60,29 @@ with open('a1_a2.mp3', 'wb') as f:
     #     gTTS(str(i), lang="zh-TW").write_to_fp(f)
     #     gTTS(str(i), lang="es", tld='com').write_to_fp(f)
 
-    for tr in driver.find_element_by_css_selector("#post-10856 > div.post-content.container-fluid.d-flex.justify-content-center.mb-5 > div > div > table").find_elements_by_tag_name("tr"):
+    for tr in driver.find_element_by_css_selector("#post-8089 > div.post-content.container-fluid.d-flex.justify-content-center.mb-5 > div > div > table").find_elements_by_tag_name("tr"):
         tds = tr.find_elements_by_tag_name("td")
         if len(tds) == 3:
             index = index+1
-            index_english = num2words(index, lang='en')
+            # index_english = num2words(index, lang='en')
             index_spainish = num2words(index, lang='es')
-            chinese = tds[2].text
+            chinese = tds[2].text.replace("[拉美]", "").replace("[墨西哥]", "")
             pattern = re.compile(r'[^\u4e00-\u9fa5]')
             chineseOnly = re.sub(pattern, '', chinese)
             spainish = tds[1].find_elements_by_tag_name("span")[0].text
-
-            a1csv = a1csv.append({'index_english':index_english,
+            print(index_spainish, chineseOnly, spainish)
+            a1csv = a1csv.append({
                                   'index_spainish':index_spainish,
                                   'chinese only':chineseOnly,
                                   'spainish':spainish},
                                  ignore_index=True)
-            gTTS(str(index)+"...", lang="en").write_to_fp(f)  # a1mp3 1
+            gTTS(str(index)+"...", lang="zh-TW").write_to_fp(f)  # a1mp3 1
+            sleep(2)
             gTTS(str(index)+"...", lang="es").write_to_fp(f)
+            sleep(2)
             gTTS(chineseOnly + "...", lang="zh-TW").write_to_fp(f)  # 中文
+            sleep(2)
             gTTS(spainish+"...", lang="es").write_to_fp(f)  # 西班牙文
+            sleep(2)
     a1csv.to_excel("a1_a2.xls", index=False)
 pass
