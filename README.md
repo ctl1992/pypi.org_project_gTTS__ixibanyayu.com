@@ -1,4 +1,4 @@
-# 使用gTTS生成mp3
+# 使用gTTS生成mp3, generate mp3 by gTTS
 
 网页从ixibanyayu.com上摘取，感谢ixibanyayu.com
 
