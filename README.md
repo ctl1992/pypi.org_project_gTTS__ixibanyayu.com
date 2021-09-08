@@ -1,6 +1,10 @@
 # 使用gTTS生成mp3, generate mp3 by gTTS
 
+gTTS主页：https://pypi.org/project/gTTS/
+
 网页从ixibanyayu.com上摘取，感谢ixibanyayu.com
+
+
 
 excel中每行mp3格式：中文index, 西文index，中文释义，西文释义
 
