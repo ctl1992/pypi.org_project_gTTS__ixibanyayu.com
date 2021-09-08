@@ -1,5 +1,8 @@
-# gTTS_ixibanyayu.com
-西班牙语词汇_使用gTTS生成配套录音
+# 使用gTTS生成mp3
+
+网页从ixibanyayu.com上摘取，感谢ixibanyayu.com
+
+excel中每行mp3格式：中文index, 西文index，中文释义，西文释义
 
 # gTTS访问谷歌接口限制：
 
