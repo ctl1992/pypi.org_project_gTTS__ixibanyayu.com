@@ -2,7 +2,7 @@
 
 gTTS主页：https://pypi.org/project/gTTS/
 
-网页从ixibanyayu.com上摘取，感谢ixibanyayu.com
+网页从https://ixibanyayu.com/上摘取，非常感谢
 
 
 
